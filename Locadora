@@ -1,0 +1,195 @@
+CREATE DATABASE LocadoraBD;
+
+USE LocadoraBD;
+
+CREATE TABLE Diretores (
+	Id INT PRIMARY KEY IDENTITY,
+	Nome VARCHAR ( 200 ) NOT NULL
+	);
+
+CREATE TABLE Generos (
+	Id INT PRIMARY KEY IDENTITY,
+	Nome VARCHAR ( 200 ) NOT NULL UNIQUE
+	);
+
+CREATE TABLE Filmes (
+	Id INT PRIMARY KEY IDENTITY,
+	Titulo VARCHAR ( 150 ) NOT NULL,
+	Ano INT,
+	IdDiretor INT,
+	FOREIGN KEY (IdDiretor)
+		REFERENCES Diretores(Id)
+	);
+
+CREATE TABLE FilmesGeneros (
+	Id INT PRIMARY KEY IDENTITY,
+	IdFilme INT,
+	IdGenero INT,
+	FOREIGN KEY (IdFilme)
+		REFERENCES Filmes(Id),
+	FOREIGN KEY (IdGenero)
+		REFERENCES Generos(Id),
+		);
+
+CREATE TABLE Clientes (
+		Id INT PRIMARY KEY IDENTITY,
+		Nome VARCHAR (200),
+		Email VARCHAR (200)
+	);
+
+CREATE TABLE Locacoes (
+	Id INT PRIMARY KEY IDENTITY,
+	IdCliente INT,
+	IdFilme INT,
+	DataLocacao DATE,
+	FOREIGN KEY (IdCliente)
+		REFERENCES Clientes(Id),
+	FOREIGN KEY (IdFilme)
+		REFERENCES Filmes(Id));
+
+INSERT INTO Generos (Nome)
+	VALUES 
+		('Ação'),
+	('Drama'),
+		('Ficção Científica'),
+('Aventura');		
+
+INSERT INTO Diretores(Nome)
+	VALUES 
+	('Chris Sanders'),
+('Hayao Miyazaki'), 
+	('John Lasseter'), 
+('Steven Spielberg'),
+	('Marc Webb');
+
+
+INSERT INTO Filmes(Titulo, Ano, IdDiretor)
+	VALUES 
+	('Como treinar o seu dragão', 2010, 1),
+
+	('A Viagem de Chihiro', 2001, 2),
+
+	('Toy Story', 1995, 3),
+
+	('Cavalo de Guerra', 2011, 4),
+
+	('O Espetacular Homem-Aranha', 2012, 5),
+
+	('Jurassic Park', 1993, 4),
+
+	('Ponyo', 2008, 2),
+
+	('Vida de Inseto', 1998, 3),
+
+	('Os Croods', 2013, 1),
+
+('Lilo & Stitch', 2002, 1);
+
+INSERT INTO FilmesGeneros(IdFilme, IdGenero)
+	VALUES 
+	(1,1),
+	(2,4),
+	(3,1),
+	(4,3),
+	(5,2),
+	(6,2),
+	(7,4),
+	(8,2),
+	(9,2),
+	(10,2);
+
+	INSERT INTO Clientes (Nome, Email)
+	VALUES 
+		('Murilo Santos', 'murilosanntos@email.com'),
+		('Kleber Alves', 'Alveskleb@email.com'),
+		('Silvana Machado', 'Silva86machado@email.com');
+
+
+-- c) 
+
+INSERT INTO Locacoes (IdCliente, IdFilme, DataLocacao)
+	VALUES 
+		(1, 1, '2023-12-31'),  
+		(1, 2, '2023-12-31'),  
+		(1, 6, '2023-12-31');  
+
+INSERT INTO Locacoes (IdCliente, IdFilme, DataLocacao)
+	VALUES 
+		(3, 3, '2023-09-30'),  
+		(3, 4, '2023-09-30');  
+
+INSERT INTO Locacoes (IdCliente, IdFilme, DataLocacao)
+	VALUES 
+		(3, 7, '2023-11-13'), 
+		(3, 8, '2023-11-13'), 
+		(3, 9, '2023-11-13'); 
+
+
+INSERT INTO Locacoes (IdCliente, IdFilme, DataLocacao)
+	VALUES 
+		(2, 1, '2024-02-01'), 
+		(2, 10, '2024-02-01');
+
+--a)
+	SELECT Titulo, Ano 
+	FROM Filmes;
+--------------------------
+--b)
+	SELECT Titulo, Ano
+	FROM Filmes
+	WHERE Ano > 2010;
+--------------------------
+--c)
+	SELECT Titulo, Ano
+	FROM Filmes
+	ORDER BY Ano DESC;
+--------------------------
+--d) 
+SELECT Titulo AS nome_filme,
+       Ano AS ano_lancamento
+FROM Filmes;
+--------------------------
+--e) 
+SELECT F.Titulo,
+       D.Nome AS Diretor
+FROM Filmes F
+INNER JOIN Diretores D
+ON F.IdDiretor = D.Id;
+--------------------------
+--f) 
+SELECT F.Titulo,
+       G.Nome AS Genero
+FROM Filmes F
+INNER JOIN FilmesGeneros FG
+ON F.Id = FG.IdFilme
+INNER JOIN Generos G
+ON FG.IdGenero = G.Id;
+---------------------------
+--g) 
+SELECT F.Titulo,
+       F.Ano
+FROM Filmes F
+INNER JOIN Diretores D
+ON F.IdDiretor = D.Id
+WHERE D.Nome = 'Chris Sanders';
+----------------------------
+--h) 
+SELECT F.Titulo,
+       G.Nome AS Genero
+FROM Filmes F
+INNER JOIN FilmesGeneros FG
+ON F.Id = FG.IdFilme
+INNER JOIN Generos G
+ON FG.IdGenero = G.Id
+WHERE G.Nome = 'Ação';
+----------------------------
+--i) 
+SELECT C.Nome AS Cliente,
+       F.Titulo,
+       L.DataLocacao
+FROM Locacoes L
+INNER JOIN Clientes C
+ON L.IdCliente = C.Id
+INNER JOIN Filmes F
+ON L.IdFilme = F.Id
+WHERE C.Nome = 'Murilo Santos';
