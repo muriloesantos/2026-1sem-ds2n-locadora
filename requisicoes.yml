@@ -1,0 +1,161 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1764769685260
+  modified: 1764769685260
+  description: ""
+collection:
+  - name: Requisições de teste
+    meta:
+      id: fld_8dcd2e34a8c94266a9782e83e9b6a095
+      created: 1790123535549
+      modified: 1790123535549
+      sortKey: -1790123535549
+      description: ""
+    children:
+      - url: localhost:3000/
+        name: Teste API
+        meta:
+          id: req_3cd3570f242648f0b58c75416b6a2ae1
+          created: 1788302256555
+          modified: 1790123539497
+          isPrivate: false
+          description: ""
+          sortKey: -1790123539447
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3000/test
+        name: Teste conexão banco
+        meta:
+          id: req_be9ec1ef20b941a3ad890caff09ca295
+          created: 1788303349206
+          modified: 1790123542405
+          isPrivate: false
+          description: ""
+          sortKey: -1790123539547
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3000/test/tables
+        name: Teste listar tabelas banco
+        meta:
+          id: req_40aa131162c149afba265f03839f1596
+          created: 1788908475528
+          modified: 1790123546891
+          isPrivate: false
+          description: ""
+          sortKey: -1790123539647
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: New Request
+        meta:
+          id: req_40bfaae7ef084b7abd553e5f35131065
+          created: 1790123598135
+          modified: 1790123631657
+          isPrivate: false
+          description: ""
+          sortKey: -1790123539747
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Gêneros
+    meta:
+      id: fld_d69dc8503a2341119eae43ee9a496d0d
+      created: 1790123582016
+      modified: 1790123764544
+      sortKey: -1790123582016
+      description: ""
+    children:
+      - url: localhost:3000/generos
+        name: Cria genero
+        meta:
+          id: req_da4c4b5d416b414b9d5acd3a6a39ea6b
+          created: 1790123458141
+          modified: 1790125084817
+          isPrivate: false
+          description: ""
+          sortKey: -1790123695764
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome" : "Ação"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1790117026118
+    modified: 1790117026118
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1790117026113
+    modified: 1790117026113
+    isPrivate: false
